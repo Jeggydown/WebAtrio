@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,9 +9,17 @@ namespace WebAtrio
 {
     public partial class _Default : Page
     {
+        private const int maxAge = 149;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ReadXml();
+
+            if(!IsPostBack)
+            {
+                HttpContext.Current.Session["ShowPanel"] = false;
+                dataRepeater.Visible = false;
+            }
         }
 
         private void ReadXml()
@@ -40,6 +47,45 @@ namespace WebAtrio
             }
             catch (Exception ex)
             {
+            }
+        }
+
+        protected void btnValidate_Click(object sender, EventArgs e)
+        {
+            var pers = new Personne
+            {
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
+                BirthDate = DateTime.Parse(txtDateBirth.Text)
+            };
+
+            if(pers.Age <= maxAge)
+            {
+                using (var ctx = new WebAtrioDbContext())
+                {
+                    ctx.Personnes.Add(pers);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        protected void btnShowList_Click(object sender, EventArgs e)
+        {
+            if (!(bool)HttpContext.Current.Session["ShowPanel"])
+            {
+                using (var ctx = new WebAtrioDbContext())
+                {
+                    dataRepeater.DataSource = ctx.Personnes.OrderBy(x=> x.LastName).OrderBy(x => x.FirstName).ToList();
+                    dataRepeater.DataBind();
+                }
+
+                HttpContext.Current.Session["ShowPanel"] = true;
+                dataRepeater.Visible = true;
+            }
+            else
+            {
+                HttpContext.Current.Session["ShowPanel"] = false;
+                dataRepeater.Visible = false;
             }
         }
     }

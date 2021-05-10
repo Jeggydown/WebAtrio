@@ -64,10 +64,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebAtrio.Dao.Entity\WebAtrio.Dao.Entity.csproj">
-      <Project>{68e00466-c434-483a-8de5-5e60d9fdd129}</Project>
-      <Name>WebAtrio.Dao.Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WebAtrio.Dao\WebAtrio.Dao.csproj">
       <Project>{d6d5641a-7c89-4267-9992-45de09d1cda4}</Project>
       <Name>WebAtrio.Dao</Name>

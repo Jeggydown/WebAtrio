@@ -55,12 +55,6 @@
     <Compile Include="WebAtrioDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebAtrio.Dao.Entity\WebAtrio.Dao.Entity.csproj">
-      <Project>{68e00466-c434-483a-8de5-5e60d9fdd129}</Project>
-      <Name>WebAtrio.Dao.Entity</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

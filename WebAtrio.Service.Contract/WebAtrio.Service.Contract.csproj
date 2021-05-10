@@ -45,11 +45,5 @@
     <Compile Include="IPersonneService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WebAtrio.Dao.Entity\WebAtrio.Dao.Entity.csproj">
-      <Project>{68e00466-c434-483a-8de5-5e60d9fdd129}</Project>
-      <Name>WebAtrio.Dao.Entity</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
